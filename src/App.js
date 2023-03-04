@@ -13,6 +13,7 @@ function App() {
             <header className="App-header">
                 {isAuthenticated ? <LogOut /> : <Login />}
                 <br />
+                <br />
                 <Profile />
             </header>
         </div>
