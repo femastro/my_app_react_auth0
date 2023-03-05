@@ -9,16 +9,12 @@ const API_URL = "https://www.mastrosoft.com.ar/api/public/neumaticos";
 
 export default function Article() {
     const { id } = useParams();
-    const [data, setData] = useState([]);
+    const [data, setData] = useState({});
     const apiUrl = `${API_URL}/${id}`;
 
     useEffect(() => {
-        carga();
-    });
-
-    const carga = async () => {
         try {
-            await fetch(apiUrl)
+            fetch(apiUrl)
                 .then((response) => response.json())
                 .then((data) => {
                     setData(data);
@@ -26,13 +22,12 @@ export default function Article() {
         } catch (error) {
             console.log(error);
         }
-    };
+    });
 
-    const handleChange = (event) => {
-        console.log(event.target.value);
+    const handleChange = (e) => {
         setData({
             ...data,
-            [event.target.name]: event.target.value,
+            [e.target.name]: e.target.value,
         });
     };
 
@@ -62,8 +57,8 @@ export default function Article() {
         btn.setAttribute("disabled", "disabled");
     };
 
-    const handleSubmit = async (event) => {
-        event.preventDefault();
+    const handleSubmit = async (e) => {
+        e.preventDefault();
         handleButton();
         console.log(data);
 
@@ -177,16 +172,6 @@ export default function Article() {
                                                 min="0"
                                             />
                                         </div>
-                                    </div>
-                                </div>
-                                <div className="row m-3 p-2 border border-light">
-                                    <div className="col-md-6">
-                                        <label className="form-label form-label-sm">
-                                            Codigo QR :
-                                        </label>
-                                    </div>
-                                    <div className="col-md-6">
-                                        <div id="codigoqr"></div>
                                     </div>
                                 </div>
                                 <hr />

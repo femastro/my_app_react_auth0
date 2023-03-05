@@ -41,7 +41,7 @@ export default function NewArticle() {
                 position: "top-center",
                 autoClose: 3000,
                 success: setTimeout(() => {
-                    window.location = "/";
+                    window.location = "/home";
                 }, 3200),
             });
         } else {
@@ -49,7 +49,7 @@ export default function NewArticle() {
                 position: "top-center",
                 autoClose: 3000,
                 success: setTimeout(() => {
-                    window.location = "/";
+                    window.location = "/home";
                 }, 3200),
             });
         }

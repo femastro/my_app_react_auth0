@@ -64,6 +64,7 @@ const Header = () => {
                             ) : (
                                 <li className="nav-item">
                                     <a
+                                        href=""
                                         className="nav-link active"
                                         onClick={() => loginWithRedirect()}
                                     >
