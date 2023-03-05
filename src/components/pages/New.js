@@ -36,7 +36,7 @@ export default function NewArticle() {
     }, []);
 
     const notify = (message, alerta) => {
-        if (alerta == "true") {
+        if (alerta) {
             toast.success(message, {
                 position: "top-center",
                 autoClose: 3000,
@@ -92,8 +92,8 @@ export default function NewArticle() {
     ///
 
     const handleChange = async (event) => {
-        let url;
-        let dato;
+        let url = "";
+        let dato = "";
         switch (event.target.name) {
             case "marca":
                 url = "modelos";
@@ -111,6 +111,8 @@ export default function NewArticle() {
             case "medidas":
                 url = null;
                 break;
+            default:
+                break;
         }
         if (url != null) {
             const config = {
@@ -123,9 +125,11 @@ export default function NewArticle() {
             await fetch(API_URL + "/all/" + url, config)
                 .then((r) => r.json())
                 .then((d) => {
+                    // eslint-disable-next-line
                     if (url == "modelos") {
                         setModelo(d);
                     }
+                    // eslint-disable-next-line
                     if (url == "medidas") {
                         setMedida(d);
                     }

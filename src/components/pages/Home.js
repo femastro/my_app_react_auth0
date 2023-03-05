@@ -34,7 +34,7 @@ export default function Home() {
 
     useEffect(() => {
         carga();
-    }, []);
+    });
 
     const handleDelete = async (data) => {
         const Options = {

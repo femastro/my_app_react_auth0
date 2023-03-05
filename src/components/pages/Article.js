@@ -9,15 +9,14 @@ const API_URL = "https://www.mastrosoft.com.ar/api/public/neumaticos";
 
 export default function Article() {
     const { id } = useParams();
-    const [data, setData] = useState({});
+    const [data, setData] = useState([]);
     const apiUrl = `${API_URL}/${id}`;
 
     useEffect(() => {
-        handleLoad();
-        // QrCode(apiUrl);
-    }, []);
+        carga();
+    });
 
-    const handleLoad = async () => {
+    const carga = async () => {
         try {
             await fetch(apiUrl)
                 .then((response) => response.json())
@@ -29,19 +28,8 @@ export default function Article() {
         }
     };
 
-    // function QrCode() {
-    //     const qr = new QRCode(document.getElementById("codigoqr"), {
-    //         text: apiUrl,
-    //         width: 128,
-    //         height: 128,
-    //         colorDark: "#000000",
-    //         colorLight: "#ffffff",
-    //     });
-    //     qr.clear();
-    //     qr.makeCode(apiUrl);
-    // }
-
     const handleChange = (event) => {
+        console.log(event.target.value);
         setData({
             ...data,
             [event.target.name]: event.target.value,
@@ -49,12 +37,12 @@ export default function Article() {
     };
 
     const notify = (message, alerta) => {
-        if (alerta == "true") {
+        if (alerta) {
             toast.success(message, {
                 position: "top-center",
                 autoClose: 3000,
                 success: setTimeout(() => {
-                    window.location = "/";
+                    window.location = "/home";
                 }, 3200),
             });
         } else {
@@ -62,7 +50,7 @@ export default function Article() {
                 position: "top-center",
                 autoClose: 3000,
                 success: setTimeout(() => {
-                    window.location = "/";
+                    window.location = "/home";
                 }, 3200),
             });
         }
@@ -77,6 +65,7 @@ export default function Article() {
     const handleSubmit = async (event) => {
         event.preventDefault();
         handleButton();
+        console.log(data);
 
         const Options = {
             method: "PUT",
@@ -97,7 +86,7 @@ export default function Article() {
     };
 
     return (
-        <div className="container" onLoad={handleLoad}>
+        <div className="container">
             <ToastContainer />
             <div className="row">
                 <div className="card col-md-5 mx-auto">
@@ -193,7 +182,7 @@ export default function Article() {
                                 <div className="row m-3 p-2 border border-light">
                                     <div className="col-md-6">
                                         <label className="form-label form-label-sm">
-                                            Codigo QR
+                                            Codigo QR :
                                         </label>
                                     </div>
                                     <div className="col-md-6">
