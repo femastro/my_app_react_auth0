@@ -22,11 +22,7 @@ function App() {
                             <Route path="/" element={<Profile />} />
                             <Route path="/home" element={<Home />} />
                             <Route path="/contact" element={<Contact />} />
-                            <Route
-                                exact
-                                path="/article/:id"
-                                element={<Article />}
-                            />
+                            <Route path="/article/:id" element={<Article />} />
                             <Route exact path="/new" element={<NewArticle />} />
                         </Routes>
                     </BrowserRouter>

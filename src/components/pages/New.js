@@ -92,8 +92,8 @@ export default function NewArticle() {
     ///
 
     const handleChange = async (event) => {
-        let url = "";
-        let dato = "";
+        let url;
+        let dato;
         switch (event.target.name) {
             case "marca":
                 url = "modelos";

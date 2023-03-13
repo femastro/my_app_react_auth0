@@ -1,5 +1,4 @@
-import React from "react";
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 
 import { ToastContainer, toast } from "react-toastify";
@@ -9,12 +8,20 @@ const API_URL = "https://www.mastrosoft.com.ar/api/public/neumaticos";
 
 export default function Article() {
     const { id } = useParams();
-    const [data, setData] = useState({});
     const apiUrl = `${API_URL}/${id}`;
+    const [data, setData] = useState({});
 
     useEffect(() => {
         try {
-            fetch(apiUrl)
+            handleLoad();
+        } catch (error) {
+            console.log(error);
+        }
+    });
+
+    const handleLoad = async () => {
+        try {
+            await fetch(apiUrl)
                 .then((response) => response.json())
                 .then((data) => {
                     setData(data);
@@ -22,12 +29,12 @@ export default function Article() {
         } catch (error) {
             console.log(error);
         }
-    });
+    };
 
-    const handleChange = (e) => {
+    const handleChange = (event) => {
         setData({
             ...data,
-            [e.target.name]: e.target.value,
+            [event.target.name]: event.target.value,
         });
     };
 
@@ -60,7 +67,6 @@ export default function Article() {
     const handleSubmit = async (e) => {
         e.preventDefault();
         handleButton();
-        console.log(data);
 
         const Options = {
             method: "PUT",
